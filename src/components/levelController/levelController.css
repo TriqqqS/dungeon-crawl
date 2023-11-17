@@ -1,0 +1,28 @@
+.level-layout {
+  position: relative;
+  display: block;
+  width: 410px;
+  height: 443px;
+  margin: 0 auto;
+}
+
+.level-layout__tiles {
+  width: max-content;
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(7, auto);
+  gap: 3px 3px;
+}
+
+.level-layout__tiles div {
+  width: 56px;
+  height: 56px;
+}
+
+.level-layout__creatures {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 410px;
+  height: 443px;
+}

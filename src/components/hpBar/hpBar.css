@@ -1,0 +1,25 @@
+.level-layout-hp {
+  width: 410px;
+  height: 30px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 3;
+}
+
+#hp-bar {
+  top: 5px;
+  left: 0px;
+  right: 0px;
+  /* margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px; */
+  width: 410px;
+  height: 20px;
+  position: absolute;
+  transition: 0.15s all;
+  z-index: -1;
+}
+
+/* #hp-border {
+  z-index: 1;
+} */
