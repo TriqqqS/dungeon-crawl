@@ -2,7 +2,6 @@ import React from "react";
 import "./hpBar.css";
 
 const HpBar = ({ playerHp, playerMaxHp }) => {
-  // console.log(`${playerMaxHp}  /  ${playerHp}`);
   return (
     <div className={"level-layout-hp"}>
       <img

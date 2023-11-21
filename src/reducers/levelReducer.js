@@ -34,7 +34,6 @@ export const levelReducer = (state, action) => {
 
 export const creatureAction = (direction, id, state) => {
   const actionData = commandHandler(direction, id, state);
-  // console.log(`DISPATCH is called by: ${id} / Direction is: ${direction}`);
   return {
     type: CREATURE_ACTION,
     payload: actionData,
