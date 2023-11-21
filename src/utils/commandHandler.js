@@ -55,8 +55,6 @@ const creatureAttack = (top, left, id, direction, pattern, creatures) => {
     }
   }
 
-  // if (id !== 0) attacker.chasing = true;
-
   return {
     pattern: pattern,
     creatures: creatures,

@@ -7,12 +7,16 @@ const lm = new LevelMakerKit();
 const setTilePosition = (level) => {
   level.pattern.map((row, top) => {
     return row.map((col, left) => {
-      const cr = level.creatures.filter(
+      const cr = level.creatures.find(
         (creature) => creature.top === top && creature.left === left
       );
+      if (cr) col.occupiedBy = { id: cr.id };
+
+      if (top === level.exit.top && left === level.exit.left) col.exit = true;
+
       col.top = top;
       col.left = left;
-      if (cr[0]) col.occupiedBy = { id: cr[0].id };
+
       return col;
     });
   });
@@ -24,12 +28,15 @@ const levelDb = {
     level: 1,
     size: 7,
     startPosition: { top: 6, left: 0 },
+    exit: { top: 0, left: 6 },
     creatures: [
-      { ...creaturesDb.player, id: 0, top: 2, left: 3 },
+      { ...creaturesDb.player, id: 0, top: 6, left: 0 },
       { ...creaturesDb.ogre1, id: 1, top: 1, left: 0 },
       { ...creaturesDb.ogre1, id: 2, top: 1, left: 6 },
-      { ...creaturesDb.ogre1, id: 3, top: 4, left: 1 },
+      { ...creaturesDb.ogre1, id: 3, top: 4, left: 2 },
     ],
+
+    items: [{ id: 0, type: "ladder", top: 0, left: 6 }],
 
     pattern: [
       [

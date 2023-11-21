@@ -1,14 +1,13 @@
 import React from "react";
 import { useReducer, useRef, useEffect } from "react";
-import TileElement from "../tileElement/tileElement";
-// import getLevel from "../../services/levelDatabase";
-import "./levelController.css";
-import PlayerModel from "../playerModel/playerModel";
-import HpBar from "../hpBar/hpBar";
 import { levelReducer, INITIAL_STATE } from "../../reducers/levelReducer";
 import { creatureAction } from "../../reducers/levelReducer";
 import { aiLogic } from "../../utils/aiLogic";
 import commandHandler from "../../utils/commandHandler";
+import TileElement from "../tileElement/tileElement";
+import PlayerModel from "../playerModel/playerModel";
+import HpBar from "../hpBar/hpBar";
+import "./levelController.css";
 
 // all variations of top and left variables means an offset from top or left
 const LevelController = () => {
@@ -23,8 +22,12 @@ const LevelController = () => {
     s: "bot",
     a: "left",
     d: "right",
+    ArrowUp: "top",
+    ArrowDown: "bot",
+    ArrowLeft: "left",
+    ArrowRight: "right",
   };
-  // console.log(`LEVEL RERENDERED`);
+
   // actionBlock for blocking player's control
   const actionBlock = useRef(false);
   // timerId for removing previous timer when new actionBlock activated
@@ -34,8 +37,11 @@ const LevelController = () => {
 
   useEffect(() => {
     const moveByKeyboard = (event) => {
+      if (Object.keys(direction).includes(event.key)) {
+        event.preventDefault();
+      }
       if (
-        ["w", "s", "a", "d"].includes(event.key) &&
+        Object.keys(direction).includes(event.key) &&
         actionBlock.current === false &&
         playerHp > 0 &&
         commandHandler(direction[event.key], 0, levelState).message !==
@@ -60,7 +66,6 @@ const LevelController = () => {
 
   // this func do something only for enemy's attack turn
   const onActionAnimationEnd = () => {
-    // if (turnQueue.current >= creatures.length - 1) turnQueue.current = 0;
     console.log(turnQueue.current);
     if (turnQueue.current) {
       creatures.slice(turnQueue.current).some((element) => {
@@ -97,7 +102,6 @@ const LevelController = () => {
         }
         return false;
       });
-      // if (turnQueue.current === creatures.length - 1) turnQueue.current = 0;
     }
   };
 
@@ -108,8 +112,8 @@ const LevelController = () => {
         return (
           <TileElement
             key={`${el.top}x${el.left}`}
-            type={el.type}
             sprite={process.env.PUBLIC_URL + `${el.sprite}`}
+            exit={el.exit}
           />
         );
       });
@@ -133,15 +137,13 @@ const LevelController = () => {
   };
 
   return (
-    <>
-      <div className="level-layout">
-        <HpBar playerHp={playerHp} playerMaxHp={playerMaxHp} />
-        <div className="level-layout__tiles">{renderLayout(pattern)}</div>
-        <div className="level-layout__creatures">
-          {renderCreatures(creatures)}
-        </div>
+    <div className="level-layout">
+      <HpBar playerHp={playerHp} playerMaxHp={playerMaxHp} />
+      <div className="level-layout__tiles">{renderLayout(pattern)}</div>
+      <div className="level-layout__creatures">
+        {renderCreatures(creatures)}
       </div>
-    </>
+    </div>
   );
 };
 

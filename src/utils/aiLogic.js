@@ -1,16 +1,15 @@
 export const aiLogic = (attackerId, pattern, creatures) => {
+  const monster = creatures[attackerId];
+  const player = creatures[0];
+
   let direction = "stand";
-  // const {hp, top, left} = creatures[attackerId]
 
-  if (creatures[attackerId].hp > 0) {
-    if (
-      creatures[attackerId].top === creatures[0].top &&
-      creatures[attackerId].left > creatures[0].left
-    ) {
+  if (monster.hp > 0) {
+    if (monster.top === player.top && monster.left > player.left) {
       direction = "left";
-      if (creatures[attackerId].left - creatures[0].left !== 1) {
-        pattern[creatures[attackerId].top]
-          .slice(creatures[0].left + 1, creatures[attackerId].left)
+      if (monster.left - player.left !== 1) {
+        pattern[monster.top]
+          .slice(player.left + 1, monster.left)
           .forEach((tile) => {
             if (tile.type !== "road") direction = "stand";
           });
@@ -18,14 +17,11 @@ export const aiLogic = (attackerId, pattern, creatures) => {
       } else return direction;
     }
 
-    if (
-      creatures[attackerId].top === creatures[0].top &&
-      creatures[attackerId].left < creatures[0].left
-    ) {
+    if (monster.top === player.top && monster.left < player.left) {
       direction = "right";
-      if (creatures[0].left - creatures[attackerId].left !== 1) {
-        pattern[creatures[attackerId].top]
-          .slice(creatures[attackerId].left + 1, creatures[0].left)
+      if (player.left - monster.left !== 1) {
+        pattern[monster.top]
+          .slice(monster.left + 1, player.left)
           .forEach((tile) => {
             if (tile.type !== "road") direction = "stand";
           });
@@ -33,44 +29,32 @@ export const aiLogic = (attackerId, pattern, creatures) => {
       } else return direction;
     }
 
-    if (
-      creatures[attackerId].left === creatures[0].left &&
-      creatures[attackerId].top > creatures[0].top
-    ) {
+    if (monster.left === player.left && monster.top > player.top) {
       direction = "top";
-      if (creatures[attackerId].top - creatures[0].top !== 1) {
-        pattern
-          .slice(creatures[0].top + 1, creatures[attackerId].top)
-          .forEach((row) => {
-            if (row[creatures[0].left].type !== "road") direction = "stand";
-          });
+      if (monster.top - player.top !== 1) {
+        pattern.slice(player.top + 1, monster.top).forEach((row) => {
+          if (row[player.left].type !== "road") direction = "stand";
+        });
         return direction;
       } else return direction;
     }
 
-    if (
-      creatures[attackerId].left === creatures[0].left &&
-      creatures[attackerId].top < creatures[0].top
-    ) {
+    if (monster.left === player.left && monster.top < player.top) {
       direction = "bot";
-      if (creatures[0].top - creatures[attackerId].top !== 1) {
-        pattern
-          .slice(creatures[attackerId].top + 1, creatures[0].top)
-          .forEach((row) => {
-            if (row[creatures[0].left].type !== "road") direction = "stand";
-          });
+      if (player.top - monster.top !== 1) {
+        pattern.slice(monster.top + 1, player.top).forEach((row) => {
+          if (row[player.left].type !== "road") direction = "stand";
+        });
         return direction;
       } else return direction;
     }
 
-    if (creatures[attackerId].actionDirection) {
+    if (monster.actionDirection) {
       console.log(`CHASING`);
 
-      return creatures[attackerId].actionDirection;
+      return monster.actionDirection;
     }
   }
 
   return direction;
 };
-
-// return data for dispatch

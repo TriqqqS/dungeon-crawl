@@ -46,39 +46,6 @@
   }
 }
 
-/* @keyframes topMoveAnimation {
-}
-
-@keyframes botMoveAnimation {
-  0% {
-    transform: translateY(0px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes leftMoveAnimation {
-  0% {
-    transform: translateX(0px);
-  }
-
-  100% {
-    transform: translateX(0px);
-  }
-}
-
-@keyframes rightMoveAnimation {
-  0% {
-    transform: translateX(0px);
-  }
-
-  100% {
-    transform: translateX(0px);
-  }
-} */
-
 .moving-creature {
   display: block;
   width: 56px;
@@ -88,12 +55,6 @@
   left: 0px;
   z-index: 1;
   transition: 0.25s all;
-}
-
-.moving-creature__sprite {
-  display: block;
-  width: 56px;
-  height: 56px;
 }
 
 .attack-animation__topAttackAnimation {
@@ -111,19 +72,3 @@
 .attack-animation__rightAttackAnimation {
   animation: rightAttackAnimation 0.2s 1;
 }
-
-/* .move-animation__topMoveAnimation {
-  animation: topMoveAnimation 0.15s 1;
-} */
-
-/* .move-animation__botMoveAnimation {
-  animation: botMoveAnimation 0.15s 1;
-}
-
-.move-animation__leftMoveAnimation {
-  animation: leftMoveAnimation 0.15s 1;
-}
-
-.move-animation__rightMoveAnimation {
-  animation: rightMoveAnimation 0.15s 1;
-} */

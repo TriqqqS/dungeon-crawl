@@ -1,0 +1,56 @@
+.main-menu {
+  display: block;
+  background-image: url("../../../public/sprites/ui/menu1Background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 410px;
+  height: 443px;
+  margin: 0 auto;
+}
+
+.buttons-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+  top: 20px;
+}
+
+button.disabled {
+  pointer-events: none;
+}
+
+#continue {
+  width: 224px;
+  height: 67px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-image: url("../../../public/sprites/ui/continue1Button.png");
+  background-position: center;
+}
+
+#continue:hover {
+  background-image: url("../../../public/sprites/ui/continue_hover1Button.png");
+}
+
+#continue:active {
+  background-image: url("../../../public/sprites/ui/continue_active1Button.png");
+}
+
+#new-game {
+  width: 224px;
+  height: 67px;
+  display: block;
+  margin: 0 auto;
+  background-image: url("../../../public/sprites/ui/newGame1Button.png");
+  background-position: center;
+}
+
+#new-game:hover {
+  background-image: url("../../../public/sprites/ui/newGame_hover1Button.png");
+}
+
+#new-game:active {
+  background-image: url("../../../public/sprites/ui/newGame_active1Button.png");
+}
