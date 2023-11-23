@@ -18,6 +18,7 @@ export const levelReducer = (state, action) => {
     case LEVEL_CHANGE:
       return {
         ...state,
+        level: action.payload.level,
       };
 
     case CREATURE_ACTION:
